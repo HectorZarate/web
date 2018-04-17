@@ -708,6 +708,12 @@ def profile(request, handle):
     }
     return TemplateResponse(request, 'profile_details.html', params)
 
+def mentors(request):
+    """Handle displaying the mentors view."""
+    params = {
+        'title': _('Mentor Explorer'),
+    }
+    return TemplateResponse(request, 'mentors.html', params)
 
 @csrf_exempt
 @ratelimit(key='ip', rate='5/m', method=ratelimit.UNSAFE, block=True)
@@ -1027,8 +1033,8 @@ def toolbox(request):
                   "name": _("Mentorship Matcher"),
                   "img": static("v2/images/tools/comingsoon.png"),
                   "description": _('''Matches Devs with Coaches'''),
-                  "link": 'https://github.com/gitcoinco/web/issues/565',
-                  'link_copy': _('Details'),
+                  "link": reverse("mentors"),
+                  'link_copy': _('Try It'),
                   "active": "false",
                   'stat_graph': 'na',  # TODO
             },
